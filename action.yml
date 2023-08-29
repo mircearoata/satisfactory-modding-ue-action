@@ -1,0 +1,18 @@
+name: 'Unreal Engine - Satisfactory Modding'
+description: 'Setup the Satisfactory Modding Unreal Engine'
+inputs:
+  cache:
+    description: 'Whether to use the tool cache for the engine'
+    required: false
+    default: 'true'
+  tag:
+    description: 'The release tag to download'
+    required: false
+    default: ''
+  token:
+    description: 'The token to use when downloading the engine'
+    required: false
+    default: ${{ github.token }}
+runs:
+  using: 'node16'
+  main: 'index.js'
