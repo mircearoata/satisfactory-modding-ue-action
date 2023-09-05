@@ -13760,8 +13760,10 @@ var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
 const core = __nccwpck_require__(7733);
+const exec = __nccwpck_require__(1757);
 const github = __nccwpck_require__(3695);
 const downloader = __nccwpck_require__(6021);
+const path = __nccwpck_require__(1017);
 
 async function run() {
   const token = core.getInput('token');
@@ -13773,6 +13775,9 @@ async function run() {
   const enginePath = await downloader.download(octokit, token, tag, cache);
 
   core.exportVariable('UE_ROOT', enginePath);
+
+  await exec.exec('reg', ['save', 'HKCU\\Software\\Epic Games\\Unreal Engine\\Builds', path.join(process.env.RUNNER_TEMP, 'UEBuilds.hiv')]);
+  await exec.exec(path.join(enginePath, 'SetupScripts', 'Register.bat'));
 }
 
 run();
