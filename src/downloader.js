@@ -17,16 +17,6 @@ const ASSET_NAME_REGEX = /^UnrealEngine-CSS-Editor-Win64\.7z.*$/;
 async function download(octokit, token, tag, cache) {
   const temp = process.env['RUNNER_TEMP'];
 
-  const isLatest = tag === '';
-
-  if (isLatest) {
-    const { data: latestRelease } = await octokit.rest.repos.getLatestRelease({
-      owner: 'satisfactorymodding',
-      repo: 'UnrealEngine',
-    });
-    tag = latestRelease.tag_name;
-  }
-
   const engineDirectory = toolCache.find('UnrealEngine-CSS', tag);
 
   if (engineDirectory) {

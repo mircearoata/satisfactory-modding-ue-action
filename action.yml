@@ -9,6 +9,10 @@ inputs:
     description: 'The release tag to download'
     required: false
     default: ''
+  version:
+    description: 'The version to download'
+    required: false
+    default: ''
   token:
     description: 'The token to use when downloading the engine'
     required: false
